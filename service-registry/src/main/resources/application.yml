@@ -1,0 +1,36 @@
+# using --- to separate profiles
+
+# common variables
+reg1_port: 8761
+reg2_port: 8762
+
+---
+
+spring:
+  profiles: reg1
+server:
+  port: ${reg1_port}
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka-reg2:${reg2_port}/eureka
+    register-with-eureka: true
+    fetch-registry: true
+#  instance:
+#    hostname: eureka-reg1
+# eureka register default by ip address, hostname property tells eureka using hostname not ip address.
+#  instance:
+#    appname: eureka-server-cluster
+# eureka using spring.application.name to override the eureka.instance.appname(default unknown)
+---
+
+spring:
+  profiles: reg2
+server:
+  port: ${reg2_port}
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka-reg1:${reg1_port}/eureka
+    register-with-eureka: true
+    fetch-registry: true
