@@ -16,8 +16,8 @@ eureka:
       defaultZone: http://eureka-reg2:${reg2_port}/eureka
     register-with-eureka: true
     fetch-registry: true
-#  instance:
-#    hostname: eureka-reg1
+  instance:
+    hostname: eureka-reg1
 # eureka register default by ip address, hostname property tells eureka using hostname not ip address.
 #  instance:
 #    appname: eureka-server-cluster
@@ -34,3 +34,5 @@ eureka:
       defaultZone: http://eureka-reg1:${reg1_port}/eureka
     register-with-eureka: true
     fetch-registry: true
+  instance:
+    hostname: eureka-reg2

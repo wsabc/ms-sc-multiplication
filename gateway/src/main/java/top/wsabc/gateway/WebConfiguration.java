@@ -11,6 +11,6 @@ public class WebConfiguration extends WebMvcConfigurerAdapter {
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         // TODO how to avoid hard code of origins
-        registry.addMapping("/**").allowedOrigins("http://localhost:9090");
+//        registry.addMapping("/**").allowedOrigins("http://localhost:9090");
     }
 }

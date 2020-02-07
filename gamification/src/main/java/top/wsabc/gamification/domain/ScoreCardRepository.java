@@ -11,7 +11,7 @@ import java.util.List;
 public interface ScoreCardRepository extends CrudRepository<ScoreCard, Long> {
 
     @Query("select sum(s.score) from ScoreCard s where s.userId = :userId group by s.userId")
-    int getTotalScoreForUser(@Param("userId") final Long userId);
+    Long getTotalScoreForUser(@Param("userId") final Long userId);
 
     @Query("select new top.wsabc.gamification.domain.LeaderBoardRow(s.userId, sum(s.score)) from ScoreCard s group by s.userId order by sum(s.score) desc")
     List<LeaderBoardRow> findFirst10();

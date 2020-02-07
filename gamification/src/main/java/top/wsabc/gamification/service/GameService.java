@@ -47,13 +47,15 @@ public class GameService {
     }
 
     public GameStats retrieveStatsForUser(Long userId) {
-        int score = scoreCardRepository.getTotalScoreForUser(userId);
+        Long totalScoreForUser = scoreCardRepository.getTotalScoreForUser(userId);
+        int score = totalScoreForUser == null ? 0 : totalScoreForUser.intValue();
         List<BadgeCard> badges = badgeCardRepository.findByUserIdOrderByBadgeTimestampDesc(userId);
         return new GameStats(userId, score, badges.stream().map(BadgeCard::getBadge).collect(Collectors.toList()));
     }
 
     List<BadgeCard> processForBadges(Long userId, Long attemptId) {
-        int totalScore = scoreCardRepository.getTotalScoreForUser(userId);
+        Long totalScoreForUser = scoreCardRepository.getTotalScoreForUser(userId);
+        int totalScore = totalScoreForUser == null ? 0 : totalScoreForUser.intValue();
 
         List<ScoreCard> scoreCards = scoreCardRepository.findByUserIdOrderByScoreTimestampDesc(userId);
         List<BadgeCard> badgeCards = badgeCardRepository.findByUserIdOrderByBadgeTimestampDesc(userId);

@@ -77,7 +77,7 @@ public class MultiplicationService {
     }
 
     public MultiplicationResultAttempt getAttemptById(Long attemptId) {
-        return multiplicationResultAttemptRepository.findOne(attemptId);
+        return multiplicationResultAttemptRepository.findById(attemptId).orElse(null);
     }
 
 }
